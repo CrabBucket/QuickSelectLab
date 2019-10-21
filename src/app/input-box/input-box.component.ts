@@ -10,6 +10,7 @@ import { Component, NgModule } from '@angular/core'
   (keyup.enter)="onEnter(box.value); box.value = ''"
   
   >
+  <button mat-raised-button (click)="onEnter(box.value); box.value = ''" >Press to enter, or Hit Enter</button>
   
   <p>{{display}}</p>
   <p>{{display2}}</p>
