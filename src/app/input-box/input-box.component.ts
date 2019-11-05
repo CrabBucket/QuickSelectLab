@@ -68,6 +68,41 @@ function quickselectMax(n:number,array:number[],start:number,end:number):number[
     return array.slice(pivot+1)
   }
 }
+
+
+
+function quickselectMedianRange(n:number,array:number[],start:number,end:number){
+    var median = quickselect(Math.floor((array.length/2)),array,0,array.length-1)
+    array.splice(Math.floor((array.length/2)))
+
+    var diffs = []
+    array.forEach(element => {
+      diffs.push(Math.abs(element-median))
+    });
+
+    var answer = quickselectLeast(n,diffs,0,diffs.length-1)
+    answer.forEach(element => {
+      element = element + median
+    });
+    console.log(answer)
+
+
+
+}
+
+
+function quickselectLeast(n:number,array:number[],start:number,end:number):number[]{
+  var pivot = partition(array,start,end)
+  console.log(n)
+  if(n<pivot+1){
+    return quickselectMax(n,array,start,pivot)
+  }else if(n>pivot+1){
+    return quickselectMax(n,array,pivot,end)
+  }else{
+    return array.slice(0,pivot)
+  }
+}
+
 function quickselect(n:number,array:number[],start:number,end:number):number{
   
   var pivot = partition(array,start,end)
